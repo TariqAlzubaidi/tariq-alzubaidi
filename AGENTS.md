@@ -11,3 +11,5 @@
 
 - Keep the portfolio as one long, naturally flowing page with in-page navigation because its reveal-on-scroll presentation depends on section continuity.
 - Store editable portfolio copy and repeated records in a dedicated data module so content remains unchanged when presentation is revised.
+
+- The home page serves the user's original single-file design (src/lib/portfolio.html) via a server GET handler, because the user requires the original look exactly; edit content inside that file.
