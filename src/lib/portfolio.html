@@ -447,6 +447,21 @@ main>section .grid>*,main>section .tl>*,main>section .edu-card,main>section .ski
 html.still .v8{opacity:1!important;transform:none!important;transition:none!important}
 @media(max-width:700px){.v8.v8r{transform:translate3d(0,36px,0)!important}}
 @media(prefers-reduced-motion:reduce){.v8{opacity:1!important;transform:none!important;transition:none!important}}
+
+#certifications .cgroup{margin-top:40px}
+#certifications .cgroup:first-of-type{margin-top:8px}
+#certifications .cg-title{font-size:1.15rem;margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+#certifications .cg-main .cg-title{font-size:1.45rem}
+#certifications .cert-plain .body{flex:1}
+#certifications .cert .body .org{color:var(--muted)}
+#certifications .cstat{align-self:flex-start;font-size:.72rem!important;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);margin-bottom:6px}
+#certifications .cs-completed{color:var(--ink)!important;border-color:var(--ink)}
+#certifications .cact{margin-top:auto;padding-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+#certifications .cbtn{display:inline-flex;padding:8px 16px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);font-weight:600;font-size:.85rem;text-decoration:none;transition:background .25s,color .25s}
+#certifications a.cbtn:hover{background:var(--ink);color:var(--bg)}
+#certifications .cbtn.off{opacity:.4;cursor:not-allowed;border-style:dashed}
+#certifications .cert-empty{border-style:dashed;background:transparent}
+#certifications .cert-empty:hover{transform:none;box-shadow:none}
 </style>
 </head>
 <body>
@@ -538,7 +553,7 @@ html.still .v8{opacity:1!important;transform:none!important;transition:none!impo
 
 <section id="certifications" class="s-alt"><div class="wrap">
   <div class="head"><h2>Certifications</h2><p class="lead">Courses and certificates in HR, digital marketing, and professional skills.</p></div>
-  <div class="grid" id="certGrid"></div>
+  <div id="certGroups"></div>
 </div></section>
 
 <section id="resume" class="s-ink"><div class="wrap">
@@ -607,7 +622,20 @@ var PROJECTS=[
 ];
 var FUTURE=[{title:"Employee Turnover Analysis",tools:"Power BI"},{title:"Recruitment Funnel Analysis",tools:"Power BI"},{title:"HR Cost Analysis",tools:"Excel + Power BI"}];
 var SKILLS={"HR & Administration":["HR Operations","GOSI","Qiwa","Oracle HRIS","Employee Onboarding","HR Documentation","Payroll Coordination","HR Compliance","Employee Records","Recruitment & Selection","Saudi Labor Law"],"Customer Service & Operations":["Passenger Services","Customer Service","Problem Solving"],"Marketing & Communication":["Market Research","Campaign Coordination","Content Creation"],"Data & Reporting":["Microsoft Excel","Microsoft Office","Administrative Support","Data Analysis","Reporting","Power BI","Dashboard Development"]};
-var CERTS=[["Digital Marketing Fundamentals","Google","google","G"],["Principles of Human Resources","King Abdulaziz University","kau","KAU"],["Work Ethics & Professional Behavior","King Abdulaziz University","kau","KAU"],["Franchise & Digital Skills","King Abdulaziz University","kau","KAU"]].map(function(c){return{title:c[0],org:c[1],logo:c[2],ini:c[3],year:"",image:""}});
+var CERTS=[["Digital Marketing Fundamentals","Google","google","G"],["Principles of Human Resources","King Abdulaziz University","kau","KAU"],["Work Ethics & Professional Behavior","King Abdulaziz University","kau","KAU"],["Franchise & Digital Skills","King Abdulaziz University","kau","KAU"]].map(function(c){return{title:c[0],org:c[1],logo:c[2],ini:c[3],year:"",image:"",group:"Other Certificates"}});
+/* Add real files later: image (preview), pdf (opens in new tab), verify (official URL), status: "Completed" | "In Progress" | "Planned", date */
+var IMD="مركز إمداد المعرفة للتدريب";
+CERTS=[
+ {group:"Human Resources",title:"Human Resources Management",org:IMD,hours:"20 Hours",status:"",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"HR Accounting & Cost Management",org:IMD,hours:"15 Hours",status:"",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"Government Procedures in HR Operations",org:IMD,hours:"30 Hours",status:"",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"HR Legal Skills & Saudi Labor Law",org:IMD,hours:"20 Hours",status:"",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"Executive Secretarial & Office Management",org:IMD,hours:"25 Hours",status:"",date:"",image:"",pdf:"",verify:""},
+ {group:"Project Management",title:"PMP Project Management Training",org:"دار الرؤى للتدريب",hours:"35 Hours",status:"Planned",date:"",image:"",pdf:"",verify:""},
+ {group:"Data & Business Tools",title:"Microsoft Excel",org:"",hours:"",status:"",date:"",image:"",pdf:"",verify:""},
+ {group:"Data & Business Tools",title:"Microsoft Power BI",org:"",hours:"",status:"",date:"",image:"",pdf:"",verify:""}
+].concat(CERTS);
+var CERT_GROUPS=["Human Resources","Project Management","Data & Business Tools","English & Communication","Other Certificates"];
 var CASE=[["Overview","What the project is and the business context."],["Objective","The business question this project answers."],["Dataset","Source, size and structure of the data used."],["Tools","Tools and methods used."],["Process","How the data was cleaned, analysed and modelled."],["Key Findings","The main insights from the analysis."],["Dashboard / Results","RESULT"],["Recommendations","Actions the findings support."]];
 /* ===== end of content ===== */
 
@@ -619,7 +647,7 @@ $("#expList").innerHTML=EXPS.map(function(x,i){var m=i===0;return '<div class="j
 $("#featured").innerHTML=PROJECTS.map(function(p){return '<div class="card"><div class="thumb"><div class="bar2"><i></i><i></i><i></i></div><div class="pv">'+(p.image?'<img src="'+esc(p.image)+'" alt="'+esc(p.title)+' preview">':'Preview coming soon')+'</div></div><div class="body"><div class="cat">'+esc(p.cat)+'</div><h3>'+esc(p.title)+'</h3><div class="tags">'+p.tools.map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join("")+'</div><p>'+esc(p.desc)+'</p><a class="btn primary sm" href="#/project/'+p.slug+'">View Case Study</a></div></div>'}).join("");
 $("#futureGrid").innerHTML=FUTURE.map(function(f){return '<div class="card"><div class="body"><span class="soon">Coming Soon</span><h3>'+esc(f.title)+'</h3><div class="cat">'+esc(f.tools)+'</div></div></div>'}).join("");
 $("#skillsGrid").innerHTML=Object.keys(SKILLS).map(function(k){return '<div class="box"><h3>'+esc(k)+'</h3><div class="tags">'+SKILLS[k].map(function(s){return '<span class="tag">'+esc(s)+'</span>'}).join("")+'</div></div>'}).join("");
-$("#certGrid").innerHTML=CERTS.map(function(c,i){return '<div class="card cert">'+(c.image?'<button class="zoom" type="button" data-i="'+i+'" aria-label="View certificate full screen"><img src="'+esc(c.image)+'" alt="'+esc(c.title)+'"></button>':'<div class="slot"><span class="logo lg" data-k="'+c.logo+'" data-i="'+c.ini+'"></span></div>')+'<div class="body"><h3 style="font-size:1.1rem">'+esc(c.title)+'</h3><span class="org"><span class="logo xs" data-k="'+c.logo+'" data-i="'+c.ini+'"></span>'+esc(c.org)+'</span><span>'+esc(c.year)+'</span></div></div>'}).join("");
+$("#certGroups").innerHTML=CERT_GROUPS.map(function(g){var items=CERTS.map(function(c,i){return[c,i]}).filter(function(x){return x[0].group===g});var cards=items.map(function(x){var c=x[0],i=x[1];var link=c.pdf||c.verify;var st=c.status?'<span class="cstat cs-'+c.status.toLowerCase().replace(/\s/g,"")+'">'+esc(c.status)+'</span>':'';var top=c.image?'<button class="zoom" type="button" data-i="'+i+'" aria-label="View certificate full screen"><img src="'+esc(c.image)+'" alt="'+esc(c.title)+'"></button>':(c.logo?'<div class="slot"><span class="logo lg" data-k="'+c.logo+'" data-i="'+c.ini+'"></span></div>':'');var org=c.org?(c.logo?'<span class="org"><span class="logo xs" data-k="'+c.logo+'" data-i="'+c.ini+'"></span>'+esc(c.org)+'</span>':'<span class="org" dir="auto">'+esc(c.org)+'</span>'):'';var meta=[c.hours,c.date,c.year].filter(Boolean).map(function(m){return '<span>'+esc(m)+'</span>'}).join("");var btn=c.logo&&!link?'':(link?'<a class="cbtn" href="'+esc(link)+'" target="_blank" rel="noopener">View Certificate</a>':'<span class="cbtn off" aria-disabled="true">View Certificate</span>')+(c.pdf&&c.verify?'<a class="cbtn" href="'+esc(c.verify)+'" target="_blank" rel="noopener">Verify</a>':'');return '<div class="card cert'+(c.image||c.logo?'':' cert-plain')+'">'+top+'<div class="body">'+st+'<h3 style="font-size:1.1rem">'+esc(c.title)+'</h3>'+org+meta+(btn?'<div class="cact">'+btn+'</div>':'')+'</div></div>'}).join("");if(!cards)cards='<div class="card cert cert-plain cert-empty"><div class="body"><span>Certificates to be added</span></div></div>';return '<div class="cgroup'+(g==="Human Resources"?' cg-main':'')+'"><h3 class="cg-title">'+esc(g)+'</h3><div class="grid">'+cards+'</div></div>'}).join("");
 var cl=[["Email",CONFIG.email,CONFIG.email&&"mailto:"+CONFIG.email],["LinkedIn",CONFIG.linkedin,CONFIG.linkedin],["Phone",CONFIG.phone,CONFIG.phone&&"tel:"+CONFIG.phone.replace(/[^+\d]/g,"")],["Location","Jeddah, Saudi Arabia",""]];
 $("#contactList").innerHTML=cl.map(function(r){return '<div><small>'+r[0]+'</small>'+(r[1]?(r[2]?'<a href="'+esc(r[2])+'"'+(/^http/.test(r[2])?' target="_blank" rel="noopener"':'')+'>'+esc(r[1]).replace(/^https?:\/\/(www\.)?/,"")+'</a>':'<span>'+esc(r[1])+'</span>'):'<span style="color:var(--muted)">To be added</span>')+'</div>'}).join("");
 $("#pic").src=CONFIG.photo;
