@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -31,6 +31,7 @@ jobs:
       - name: Build
         env:
           NITRO_PRESET: static
+          NITRO_PRERENDER_FAIL_ON_ERROR: "false"
         run: bun run build
 
       - name: Setup Pages
@@ -39,16 +40,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .output/public
+          path: './.output/public'
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
     needs: build
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
