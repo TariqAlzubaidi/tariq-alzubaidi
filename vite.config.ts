@@ -7,13 +7,6 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  nitro: {
-    baseURL: "/tariq-alzubaidi/",
-    prerender: {
-      routes: ["/"],
-      failOnError: false,
-    },
-  },
   tanstackStart: {
     server: { entry: "./src/server" },
   },
