@@ -29,7 +29,9 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build
-  run: NITRO_PRESET=static bun run build
+        env:
+          NITRO_PRESET: static
+        run: bun run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
