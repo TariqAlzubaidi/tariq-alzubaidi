@@ -31,7 +31,8 @@ jobs:
       - name: Build
         env:
           NITRO_PRESET: static
-          NITRO_PRERENDER_FAIL_ON_ERROR: "false"
+          NITRO_APP_BASE_URL: /tariq-alzubaidi/
+          NITRO_PRERENDER_ROUTES: /tariq-alzubaidi/
         run: bun run build
 
       - name: Setup Pages
@@ -40,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './.output/public'
+          path: .output/public
 
   deploy:
     environment:
