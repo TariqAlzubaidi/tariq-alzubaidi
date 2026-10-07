@@ -6,7 +6,10 @@ rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist", { recursive: true });
 
 // Certificate files are hosted on the Lovable asset CDN; make their links absolute.
-const html = readFileSync("src/lib/portfolio.html", "utf8").replaceAll('"/__l5e/', `"${ASSET_HOST}/__l5e/`);
+const html = readFileSync("src/lib/portfolio.html", "utf8").replaceAll(
+  '"/__l5e/',
+  `"${ASSET_HOST}/__l5e/`,
+);
 writeFileSync("dist/index.html", html);
 copyFileSync("dist/index.html", "dist/404.html");
 writeFileSync("dist/.nojekyll", "");
