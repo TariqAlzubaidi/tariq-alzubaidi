@@ -463,6 +463,20 @@ html.still .v8{opacity:1!important;transform:none!important;transition:none!impo
 #certifications .cbtn.off{opacity:.4;cursor:not-allowed;border-style:dashed}
 #certifications .cert-empty{border-style:dashed;background:transparent}
 #certifications .cert-empty:hover{transform:none;box-shadow:none}
+
+/* HR Recruitment case study */
+.hs-study{display:grid;gap:18px}
+.hs-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:0}
+.hs-meta dt{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;opacity:.6;font-weight:700}.hs-meta dd{margin:4px 0 0;font-weight:600}
+.hs-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.hs-kpis>div{border:1px solid var(--line);border-radius:14px;padding:16px}.hs-kpis b{display:block;font-size:1.6rem;line-height:1.1}.hs-kpis span{font-size:.85rem;opacity:.7}
+.hs-shots{display:grid;gap:22px}
+.hs-shots figure{margin:0}.hs-zoom{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:none;cursor:zoom-in}
+.hs-zoom img{display:block;width:100%;height:auto}
+.hs-shots figcaption{margin-top:10px;font-size:.92rem;opacity:.85}.hs-shots figcaption strong{display:block;margin-bottom:2px}
+.hs-list{padding-left:20px}.hs-list li{margin-bottom:12px}.hs-list strong{display:block}
+.hs-disc{border:2px solid currentColor!important}
+.pstat{margin-bottom:8px;display:inline-block}
 </style>
 </head>
 <body>
@@ -617,7 +631,17 @@ var EXPS=[
   tools:["Market Research","Campaign Coordination","Content Creation"]}
 ];
 var PROJECTS=[
- {slug:"hr-recruitment-dashboard",title:"HR Recruitment Dashboard",cat:"Power BI",tools:["Power BI"],desc:"Power BI dashboard on recruitment activity. Case study in progress.",image:""},
+ {slug:"hr-recruitment-dashboard",title:"HR Recruitment Analytics Dashboard",cat:"HR Analytics / Business Intelligence",tools:["Microsoft Power BI","DAX","Data Visualization"],desc:"Interactive Power BI dashboard analyzing 500 recruitment records, hiring conversion rates, recruitment source effectiveness, and departmental hiring performance.",image:"/__l5e/assets-v1/99c99690-a532-4cbd-8adb-2263dfc54bce/hr-dash-overview.webp",status:"Completed",study:{
+ meta:[["Tools","Microsoft Power BI, DAX, Data Visualization"],["Category","HR Analytics / Business Intelligence"],["Project Type","Personal Portfolio Project"],["Dataset","500 Synthetic Recruitment Records"],["Status","Completed"]],
+ overview:["Developed an interactive HR Recruitment Analytics Dashboard using Microsoft Power BI to evaluate hiring performance across 500 synthetic applicant records.","The dashboard includes three reporting pages: Recruitment Overview, Recruitment Sources, and Hiring Analysis.","The project demonstrates how recruitment analytics can support HR teams in monitoring hiring outcomes, comparing recruitment channels, and identifying potential process improvements."],
+ kpis:[["Total Applicants","500"],["Total Hires","43"],["Overall Hiring Rate","8.60%"],["Average Time to Hire","34.81 Days"],["Recruitment Sources","6"]],
+ problem:["Recruitment teams need visibility into hiring performance to understand which recruitment channels produce successful hires, how hiring results differ across departments, and where recruitment processes may require improvement.","Without consolidated reporting, comparing recruitment effectiveness and identifying potential inefficiencies can be difficult.","This project demonstrates how a centralized HR analytics dashboard can help address these challenges."],
+ shots:[["Recruitment Overview","Displays overall recruitment KPIs, applicant distribution by department, recruitment funnel stages, final application statuses, and recruitment source comparisons.","/__l5e/assets-v1/99c99690-a532-4cbd-8adb-2263dfc54bce/hr-dash-overview.webp"],["Recruitment Sources","Compares application volumes, hires, conversion rates, and average hiring duration across six recruitment sources.","/__l5e/assets-v1/bdb71613-cc2e-49af-822e-255b9a593255/hr-dash-sources.webp"],["Hiring Analysis","Analyzes departmental hiring rates, total hires, recruiter performance, and average time to hire.","/__l5e/assets-v1/4356f46d-f13d-4b76-9264-3800c8e1de2c/hr-dash-hiring.webp"]],
+ method:["Microsoft Power BI for interactive reporting and visualization.","DAX measures for calculating recruitment KPIs.","Analysis of 500 synthetic applicant records.","Department-level recruitment performance comparisons.","Recruitment source effectiveness analysis.","Recruiter-level hiring analysis.","Interactive filters for exploring recruitment results."],
+ insights:[["Overall Recruitment Performance","Of 500 applicants, 43 were hired, resulting in an overall hiring rate of 8.60%. The average time to hire was 34.81 days."],["Employee Referrals Achieved the Highest Conversion","Employee Referral generated 12 hires from 87 applicants, achieving a 13.79% hiring conversion rate, the highest among all six recruitment sources."],["Job Fairs Showed the Lowest Conversion","Job Fair generated 87 applicants but resulted in only four hires, representing a 4.60% conversion rate. It also recorded the longest average time to hire among recruitment sources, at 45.50 days."],["Hiring Performance Varied by Department","Sales achieved the highest departmental hiring rate at 15.15%, while Operations recorded the lowest at 3.03%."],["Recruitment Timelines Differed Across Departments","Marketing recorded the longest average time to hire at 44.6 days, while Operations recorded the shortest at 22.0 days."],["Recruiter-Level Performance","The dashboard provides recruiter-level hiring comparisons. In this synthetic dataset, Sara recorded the highest number of hires, with 10."]],
+ recs:[["Strengthen Employee Referral Programs","Explore expanding employee referral initiatives while monitoring candidate quality, cost per hire, and long-term hiring outcomes."],["Evaluate Job Fair Effectiveness","Review applicant suitability, screening outcomes, recruitment costs, and hiring timelines to determine whether job fair strategies require adjustment."],["Investigate Departmental Hiring Differences","Analyze departmental recruitment requirements, applicant qualifications, and screening processes to better understand variations in hiring conversion rates."],["Improve Recruitment Timelines","Review recruitment workflows in departments with longer hiring durations, particularly Marketing, to identify potential delays."],["Establish Regular Recruitment KPI Monitoring","Use interactive reporting to track recruitment conversion rates, time to hire, and hiring outcomes to support more informed HR decisions."]],
+ outcome:["Created a three-page interactive Power BI dashboard demonstrating practical skills in recruitment analytics, DAX calculations, KPI development, and data visualization.","The project highlights the ability to translate recruitment data into actionable business insights and HR recommendations."],
+ disclaimer:"This project uses synthetic data created for educational and portfolio purposes. The findings and recommendations are illustrative and do not represent actual organizational performance."}},
  {slug:"employee-data-analysis",title:"Employee Data Analysis",cat:"Excel",tools:["Excel"],desc:"Excel analysis of employee data. Case study in progress.",image:""},
  {slug:"hr-cost-analysis",title:"HR Cost Analysis",cat:"Excel + Power BI",tools:["Excel","Power BI"],desc:"Excel and Power BI analysis of HR costs. Case study in progress.",image:""}
 ];
@@ -659,6 +683,7 @@ $("#yr").textContent="© "+new Date().getFullYear();
 document.addEventListener("click",function(e){
  var z=e.target.closest(".zoom");
  if(z){var c=CERTS[z.dataset.i];$("#lb img").src=c.image;$("#lb img").alt=c.title;$("#lb").classList.add("open");return}
+ var hz=e.target.closest(".hs-zoom");if(hz){$("#lb img").src=hz.dataset.src;$("#lb img").alt=hz.dataset.alt;$("#lb").classList.add("open");return}
  if(e.target.closest("#lb")){$("#lb").classList.remove("open");return}
  var cv=e.target.closest(".cv");
  if(cv){e.preventDefault();saveCV();return}
@@ -681,12 +706,23 @@ function saveCV(){
   if(d)return d.save({filename:fn,data:blob}).then(function(){toast("CV saved")}).catch(function(er){if(!er||er.code!=="declined")toast("Download is not available here.")});
   var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=fn;document.body.appendChild(a);a.click();a.remove()
  }).catch(function(){toast("Download is not available here.")})}
+function studyHtml(d){var P=function(a){return a.map(function(t){return '<p>'+esc(t)+'</p>'}).join("")};
+ return '<div class="hs-study"><article><h3>Project Overview</h3>'+P(d.overview)+'</article>'
+ +'<article><h3>Project Details</h3><dl class="hs-meta">'+d.meta.map(function(m){return '<div><dt>'+esc(m[0])+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join("")+'</dl></article>'
+ +'<article><h3>Key Performance Indicators</h3><div class="hs-kpis">'+d.kpis.map(function(k){return '<div><b>'+esc(k[1])+'</b><span>'+esc(k[0])+'</span></div>'}).join("")+'</div></article>'
+ +'<article><h3>Business Problem</h3>'+P(d.problem)+'</article>'
+ +'<article><h3>Dashboard Preview</h3><div class="hs-shots">'+d.shots.map(function(x){return '<figure><button type="button" class="hs-zoom" data-src="'+esc(x[2])+'" data-alt="'+esc(x[0])+' dashboard" aria-label="Enlarge '+esc(x[0])+' screenshot"><img src="'+esc(x[2])+'" alt="'+esc(x[0])+' dashboard page" loading="lazy" decoding="async"></button><figcaption><strong>'+esc(x[0])+'</strong>'+esc(x[1])+'</figcaption></figure>'}).join("")+'</div></article>'
+ +'<article><h3>Analysis &amp; Methodology</h3><ul>'+d.method.map(function(t){return '<li>'+esc(t)+'</li>'}).join("")+'</ul></article>'
+ +'<article><h3>Key Insights</h3><ol class="hs-list">'+d.insights.map(function(t){return '<li><strong>'+esc(t[0])+'</strong>'+esc(t[1])+'</li>'}).join("")+'</ol></article>'
+ +'<article><h3>Recommendations</h3><ol class="hs-list">'+d.recs.map(function(t){return '<li><strong>'+esc(t[0])+'</strong>'+esc(t[1])+'</li>'}).join("")+'</ol></article>'
+ +'<article><h3>Project Outcome</h3>'+P(d.outcome)+'</article>'
+ +'<article class="hs-disc"><h3>Dataset Disclaimer</h3><p><strong>'+esc(d.disclaimer)+'</strong></p></article></div>'}
 function route(){
  var h=location.hash,mp=h.match(/^#\/project\/(.+)$/),me=h.match(/^#\/exp\/(.+)$/),main=$("#main"),cs=$("#case"),html="",ok=false;
  if(mp){
   var p=PROJECTS.filter(function(x){return x.slug===mp[1]})[0];
   if(p){ok=true;$("#csCat").textContent=p.cat+" · "+p.tools.join(", ");$("#csTitle").textContent=p.title;document.title=p.title+" | Tariq Al-Zubaidi";$("#csFlow").style.display="";$("#csBack").href="#projects";$("#csBack").textContent="← Back to projects";
-   html='<article><h3>Status</h3><p>This case study is in progress. The full write-up, with objective, data, tools, findings and recommendations, will be published here.</p></article>'}
+   html=p.study?studyHtml(p.study):'<article><h3>Status</h3><p>This case study is in progress. The full write-up, with objective, data, tools, findings and recommendations, will be published here.</p></article>';$("#csFlow").style.display=p.study?"none":""}
  }else if(me){
   var x=EXPS.filter(function(v){return v.slug===me[1]})[0];
   if(x){ok=true;$("#csCat").innerHTML='<div class="fe"><span class="logo lg" data-k="'+x.logo+'" data-i="'+x.ini+'"></span><span>'+esc(x.co)+' · '+esc(x.meta)+'</span></div>';fillLogos();$("#csTitle").textContent=x.role;document.title=x.role+" | Tariq Al-Zubaidi";$("#csFlow").style.display="none";$("#csBack").href="#experience";$("#csBack").textContent="← Back to experience";
