@@ -114,6 +114,28 @@
   .cert-copy>span,.future-item>span,.skill-node li,.project-placeholder{font-size:12px}
   .intro-caption,.intro-side,.hero-name p,.availability{font-size:10px}
 }
+
+/* Final legibility pass: secondary text only; keep titles and motion untouched. */
+@media (min-width: 1101px) {
+  .cinema-desktop .role-overview{font-size:15px;line-height:1.65}
+  .cinema-desktop .job li{font-size:14px;line-height:1.6}
+  .cinema-desktop .job ul{gap:7px}
+  .cinema-desktop .meta,.cinema-desktop .role-company{font-size:13px}
+  .cinema-desktop .tags span,.cinema-desktop .tags a{font-size:11px}
+}
+@media (min-width: 801px) {
+  .cert-copy>span,.cert-meta{font-size:13px}
+  .cert-actions .cbtn,.cert-actions .cstat{font-size:13px}
+  .project-copy>p,.section-intro{font-size:16px}
+  .project-status,.project-number,.future-item .soon{font-size:13px}
+  .future-item>span,.future-heading p,.skill-node li{font-size:14px}
+  .project-placeholder,.project-screen figcaption,.screen-label{font-size:13px}
+}
+@media (max-width: 800px) {
+  .cert-copy>span,.cert-meta,.cert-actions .cbtn,.cert-actions .cstat{font-size:12px}
+  .project-copy>p,.section-intro,.role-overview,.job li{font-size:15px;line-height:1.65}
+  .project-status,.project-number,.future-item .soon{font-size:12px}
+}
 </style>
 <script defer src="./vendor/gsap/gsap.min.js"></script>
 <script defer src="./vendor/gsap/ScrollTrigger.min.js"></script>
