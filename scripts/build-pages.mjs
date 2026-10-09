@@ -4,12 +4,16 @@ import { mkdirSync, readFileSync, writeFileSync, copyFileSync, existsSync, rmSyn
 const ASSET_HOST = "https://tariq-alzubaidi.lovable.app";
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist", { recursive: true });
+mkdirSync("dist/vendor/gsap", { recursive: true });
+for (const file of ["gsap.min.js", "ScrollTrigger.min.js"]) {
+  copyFileSync(`public/vendor/gsap/${file}`, `dist/vendor/gsap/${file}`);
+}
+copyFileSync("public/portfolio-motion.js", "dist/portfolio-motion.js");
 
 // Certificate files are hosted on the Lovable asset CDN; make their links absolute.
-const html = readFileSync("src/lib/portfolio.html", "utf8").replaceAll(
-  '"/__l5e/',
-  `"${ASSET_HOST}/__l5e/`,
-);
+const html = readFileSync("src/lib/portfolio.html", "utf8")
+  .replace("/* PORTFOLIO_CONTENT */", () => readFileSync("src/lib/portfolio-content.js", "utf8"))
+  .replaceAll('"/__l5e/', `"${ASSET_HOST}/__l5e/`);
 writeFileSync("dist/index.html", html);
 copyFileSync("dist/index.html", "dist/404.html");
 // Standalone interactive HR analytics page; leaves the portfolio unchanged.

@@ -28,3 +28,17 @@ npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local tooling, publication staging, caches and secrets
+.tmp/
+.agents/
+.codex/
+.aws/
+.cache/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
