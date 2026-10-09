@@ -9,6 +9,8 @@ for (const file of ["gsap.min.js", "ScrollTrigger.min.js"]) {
   copyFileSync(`public/vendor/gsap/${file}`, `dist/vendor/gsap/${file}`);
 }
 copyFileSync("public/portfolio-motion.js", "dist/portfolio-motion.js");
+// Publish the downloadable CV with the static site.
+copyFileSync("public/TariqAlzubaidi_ResumeEN.pdf", "dist/TariqAlzubaidi_ResumeEN.pdf");
 
 // Certificate files are hosted on the Lovable asset CDN; make their links absolute.
 const html = readFileSync("src/lib/portfolio.html", "utf8")
