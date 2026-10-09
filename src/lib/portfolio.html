@@ -272,13 +272,13 @@ $("#form").addEventListener("submit",function(e){e.preventDefault();
  else toast("Contact details will be connected soon.")});
 
 function saveCV(){
- var bin=atob(CONFIG.cv),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
- var blob=new Blob([u],{type:"application/pdf"}),fn="Tariq-Al-Zubaidi-CV.pdf";
- var P=window.claude&&window.claude.use?window.claude.use("downloads"):Promise.resolve(null);
- P.then(function(d){
-  if(d)return d.save({filename:fn,data:blob}).then(function(){toast("CV saved")}).catch(function(er){if(!er||er.code!=="declined")toast("Download is not available here.")});
-  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=fn;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)
- }).catch(function(){toast("Download is not available here.")})}
+ var a=document.createElement("a");
+ a.href="/tariq-alzubaidi/TariqAlzubaidi_ResumeEN.pdf";
+ a.download="TariqAlzubaidi_ResumeEN.pdf";
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+}
 var GAL=[],GI=0;
 function studyHtml(d){GAL=d.shots;
  return '<div class="hs-study"><p class="hs-sub">'+esc(d.subtitle)+'</p>'
