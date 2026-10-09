@@ -38,11 +38,11 @@ var CERTS=[["Digital Marketing Fundamentals","Google","google","G"],["Principles
 /* Add real files later: image (preview), pdf (opens in new tab), verify (official URL), status: "Completed" | "In Progress" | "Planned", date */
 var IMD="مركز إمداد المعرفة للتدريب";
 CERTS=[
- {group:"Human Resources",title:"Human Resources Management",org:IMD,hours:"20 Hours",status:"",date:"",image:"/__l5e/assets-v1/f219298a-cd4e-4578-b4cf-b6795e00cc50/human-resources-management-certificate.png",pdf:"/__l5e/assets-v1/e09e0ba5-79ee-4de9-9fc0-e4abdc27a10f/human-resources-management-certificate.pdf",verify:""},
- {group:"Human Resources",title:"HR Accounting & Cost Management",org:IMD,hours:"15 Hours",status:"",date:"",image:"",pdf:"",verify:""},
- {group:"Human Resources",title:"Government Procedures in HR Operations",org:IMD,hours:"30 Hours",status:"",date:"",image:"",pdf:"",verify:""},
- {group:"Human Resources",title:"HR Legal Skills & Saudi Labor Law",org:IMD,hours:"20 Hours",status:"",date:"",image:"",pdf:"",verify:""},
- {group:"Human Resources",title:"Executive Secretarial & Office Management",org:IMD,hours:"25 Hours",status:"",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"Human Resources Management",org:IMD,hours:"20 Hours",status:"Completed",date:"",image:"/__l5e/assets-v1/f219298a-cd4e-4578-b4cf-b6795e00cc50/human-resources-management-certificate.png",pdf:"/__l5e/assets-v1/e09e0ba5-79ee-4de9-9fc0-e4abdc27a10f/human-resources-management-certificate.pdf",verify:""},
+ {group:"Human Resources",title:"HR Accounting & Cost Management",org:IMD,hours:"15 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"Government Procedures in HR Operations",org:IMD,hours:"30 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"HR Legal Skills & Saudi Labor Law",org:IMD,hours:"20 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"Executive Secretarial & Office Management",org:IMD,hours:"25 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
  {group:"Project Management",title:"PMP Project Management Training",org:"دار الرؤى للتدريب",hours:"35 Hours",status:"Planned",date:"",image:"",pdf:"",verify:""},
  {group:"Data & Business Tools",title:"Microsoft Excel",org:"",hours:"",status:"Planned",date:"",image:"",pdf:"",verify:""},
  {group:"Data & Business Tools",title:"Microsoft Power BI",org:"",hours:"",status:"Planned",date:"",image:"",pdf:"",verify:""}
