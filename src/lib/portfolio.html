@@ -92,6 +92,28 @@
 
 
 
+
+/* Readability refinement: keep cinematic headings and motion unchanged. */
+@media (min-width: 801px) {
+  .mono{font-size:12px}
+  .section-intro,.project-copy>p,.learning-heading>p,.career-heading p{font-size:15px}
+  .project-status,.project-number,.future-item .soon,.skill-node>.mono{font-size:12px}
+  .project-placeholder,.screen-label,.project-screen figcaption{font-size:12px}
+  .future-heading p,.future-item>span,.skill-node li{font-size:13px}
+  .cert-copy>span,.cert-meta,.cstat{font-size:12px}
+  .cert-copy h4{font-size:17px}
+  .role-company,.meta,.profile-facts span{font-size:12px}
+  .role-overview,.cinema-desktop .role-overview{font-size:14px}
+  .job li,.cinema-desktop .job li{font-size:13px}
+  .degree-document>p:not(.degree-name),.degree-document dd,.degree-document dt{font-size:13px}
+  .intro-caption,.intro-side,.hero-name p,.availability,.intro-bottom{font-size:12px}
+}
+@media (max-width: 800px) {
+  .mono,.project-status,.project-number,.future-item .soon,.cert-meta,.cstat{font-size:11px}
+  .project-copy>p,.section-intro,.role-overview,.job li,.learning-heading>p{font-size:14px}
+  .cert-copy>span,.future-item>span,.skill-node li,.project-placeholder{font-size:12px}
+  .intro-caption,.intro-side,.hero-name p,.availability{font-size:10px}
+}
 </style>
 <script defer src="./vendor/gsap/gsap.min.js"></script>
 <script defer src="./vendor/gsap/ScrollTrigger.min.js"></script>
