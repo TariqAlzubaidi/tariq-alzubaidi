@@ -505,11 +505,22 @@ html.still .v8{opacity:1!important;transform:none!important;transition:none!impo
 @media(max-width:700px){.hs-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.hs-kpis>div:last-child{grid-column:span 2}.hs-two,.hs-ins{grid-template-columns:1fr}.hs-study article{padding:18px}#lb.gal{padding:60px 8px}#lb .lbn{top:auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:none}#lbcap{bottom:calc(24px + env(safe-area-inset-bottom,0px))}}
 @media(prefers-reduced-motion:reduce){.hs-zoom img,.hs-zi{transition:none}.hs-zoom:hover img{transform:none}}
 
-/* Safe one-time fade-up, avoids hiding entire sections on scroll */
-main>section:not(#home)>.wrap>*{opacity:1!important;transform:none!important;transition:none!important}
-main>section:not(#home) .clean-reveal{opacity:0!important;transform:translateY(25px)!important;transition:opacity .6s ease var(--clean-delay,0ms),transform .6s ease var(--clean-delay,0ms)!important}
-main>section:not(#home) .clean-reveal.clean-shown{opacity:1!important;transform:none!important}
-@media(prefers-reduced-motion:reduce){main>section:not(#home) .clean-reveal{opacity:1!important;transform:none!important;transition:none!important}}
+/* Editorial scroll reveal: targeted, accessible, and resilient to legacy motion overrides. */
+html.motion-ready main>section:not(#home) .motion-item:not(.motion-visible){
+  opacity:0!important;
+  transform:translate3d(0,34px,0)!important;
+}
+html.motion-ready main>section:not(#home) .motion-item{
+  transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)!important;
+  transition-delay:var(--motion-delay,0ms)!important;
+  animation:none!important;
+}
+html.motion-ready main>section:not(#home) .motion-item.motion-visible{
+  opacity:1!important;transform:translate3d(0,0,0)!important;
+}
+@media(prefers-reduced-motion:reduce){
+  html.motion-ready main>section:not(#home) .motion-item{opacity:1!important;transform:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
@@ -815,14 +826,44 @@ function update(){
 window.addEventListener("resize",layout);window.addEventListener("load",function(){layout();var hh=location.hash.slice(1),k=idx(hh);if(k>=0)window.scrollTo({top:tops[k],behavior:"instant"})});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
 
-/* Unified scroll reveal: once only, desktop + mobile, safe fallback. */
+/* Editorial one-time scroll reveal for desktop and mobile. */
 (function(){
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(reduce||document.documentElement.classList.contains("still")||!("IntersectionObserver" in window))return;
-  var els=[].slice.call(document.querySelectorAll("main>section:not(#home) .head,main>section:not(#home) .card,main>section:not(#home) .job,main>section:not(#home) .edu-card,main>section:not(#home) .skills .box"));
-  var io=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add("clean-shown");io.unobserve(entry.target)}})},{threshold:0.04,rootMargin:"0px 0px -20px 0px"});
-  els.forEach(function(el,i){if(el.getBoundingClientRect().top<innerHeight*.92)return;el.classList.add("clean-reveal");el.style.setProperty("--clean-delay",Math.min(i%4,3)*70+"ms");io.observe(el)});
-  window.addEventListener("pageshow",function(){els.forEach(function(el){if(el.classList.contains("clean-reveal")&&el.getBoundingClientRect().top<innerHeight){el.classList.add("clean-shown");io.unobserve(el)}})});
+  var selector="main>section:not(#home) .head,main>section:not(#home) .job,main>section:not(#home) .card,main>section:not(#home) .edu-card,main>section:not(#home) .cert,main>section:not(#home) .skills .box,main>section:not(#home) .hs-study article,main>section:not(#home) .hs-kpis>div,main>section:not(#home) .hs-shots figure";
+  var els=[].slice.call(document.querySelectorAll(selector));
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add("motion-visible");
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.08,rootMargin:"0px 0px -24px 0px"});
+  els.forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.top<innerHeight*.88 || r.bottom<=0)return;
+    var siblings=[].slice.call(el.parentElement.children).filter(function(x){return x.matches(selector.split(",").map(function(v){return v.replace("main>section:not(#home) ","")}).join(","))});
+    var delay=Math.min(Math.max(siblings.indexOf(el),0)%4,3)*85;
+    el.style.setProperty("--motion-delay",delay+"ms");
+    el.classList.add("motion-item");
+    io.observe(el);
+  });
+  document.documentElement.classList.add("motion-ready");
+  window.addEventListener("pageshow",function(){
+    els.forEach(function(el){
+      if(el.classList.contains("motion-item")&&el.getBoundingClientRect().top<innerHeight){
+        el.classList.add("motion-visible");io.unobserve(el);
+      }
+    });
+  });
+  window.addEventListener("load",function(){
+    els.forEach(function(el){
+      if(el.classList.contains("motion-item")&&el.getBoundingClientRect().top<innerHeight*.9){
+        el.classList.add("motion-visible");io.unobserve(el);
+      }
+    });
+  });
 })();
 </script>
 </body>
