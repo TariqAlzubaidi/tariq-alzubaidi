@@ -556,6 +556,39 @@ html.motion-ready main>section:not(#home) .motion-item.motion-visible{
   html.motion-ready main>section:not(#home) .motion-item{opacity:1!important;transform:none!important;transition:none!important}
 }
 </style>
+<!-- UI/UX Pro Max-inspired redesign layer: non-destructive, reversible, responsive. -->
+<style id="premium-redesign">
+:root{--accent:#c6f36b;--premium-ease:cubic-bezier(.22,1,.36,1)}
+html{scroll-padding-top:90px}
+body{letter-spacing:-.012em}
+body::before{content:"";position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.12' filter='url(%23n)'/%3E%3C/svg%3E")}
+main>section{border-radius:32px 32px 0 0;overflow:clip;isolation:isolate}
+main>section>.wrap{position:relative;z-index:1}
+main>section:not(.hero)::before{content:"";position:absolute;left:50%;top:-250px;width:min(75vw,800px);height:470px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(120,150,120,.075),transparent 70%);pointer-events:none}
+:root[data-theme="dark"] main>section:not(.hero)::before{background:radial-gradient(ellipse,rgba(198,243,107,.075),transparent 70%)}
+h1,h2,h3{letter-spacing:-.055em}
+h2{font-size:clamp(2.8rem,5.9vw,5.8rem);line-height:1.04;text-wrap:balance}
+.head{margin-bottom:clamp(28px,5vw,68px)}
+.lead{font-size:clamp(1rem,1.45vw,1.18rem);line-height:1.75}
+.btn{transition:transform .45s var(--premium-ease),box-shadow .45s var(--premium-ease),background .3s,color .3s;border-radius:12px}
+.btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.13)}
+.btn:active{transform:translateY(-1px) scale(.98)}
+:where(.card,.edu-card,.job,.facts>div,.skills .box,.hs-kpis>div,.hs-study article){transition:transform .55s var(--premium-ease),box-shadow .55s var(--premium-ease),border-color .4s,background .4s;backface-visibility:hidden}
+:where(.card,.edu-card,.job,.facts>div,.skills .box,.hs-kpis>div,.hs-study article):hover{box-shadow:0 22px 55px rgba(0,0,0,.10);border-color:var(--ink);transform:translateY(-7px)}
+:root[data-theme="dark"] :where(.card,.edu-card,.job,.facts>div,.skills .box,.hs-kpis>div,.hs-study article):hover{box-shadow:0 22px 55px rgba(0,0,0,.25)}
+#home.hero{position:relative;overflow:hidden}
+#home.hero::before{content:"";position:absolute;width:70vw;height:70vw;max-width:850px;max-height:850px;right:-25vw;top:-25vw;border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);border-radius:50%;box-shadow:0 0 0 80px color-mix(in srgb,var(--ink) 2%,transparent),0 0 0 160px color-mix(in srgb,var(--ink) 2%,transparent);pointer-events:none;animation:premium-orbit 18s ease-in-out infinite alternate}
+@keyframes premium-orbit{from{transform:translate3d(0,0,0) rotate(-12deg)}to{transform:translate3d(-35px,30px,0) rotate(12deg)}}
+#home h1{font-size:clamp(3.8rem,9vw,9rem);line-height:.94;letter-spacing:-.075em;text-wrap:balance}
+#home .wrap{position:relative;z-index:2}
+#dots.dots{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 85%,transparent)}
+#dots.dots a{transition:height .4s var(--premium-ease),opacity .3s!important}
+#dots.dots a:hover{opacity:1!important}
+a:focus-visible,button:focus-visible{outline-offset:5px}
+@media(min-width:900px){main>section{padding-top:130px;padding-bottom:95px}.wrap{max-width:1200px}}
+@media(max-width:700px){main>section{border-radius:22px 22px 0 0}#home h1{font-size:clamp(3.2rem,13vw,5.8rem)}h2{font-size:clamp(2.4rem,10vw,4rem)}body::before{display:none}}
+@media(prefers-reduced-motion:reduce){#home.hero::before{animation:none}:where(.card,.edu-card,.job,.facts>div,.skills .box,.hs-kpis>div,.hs-study article){transition:none}:where(.card,.edu-card,.job,.facts>div,.skills .box,.hs-kpis>div,.hs-study article):hover{transform:none}}
+</style>
 </head>
 <body>
 <div id="bar"></div>
