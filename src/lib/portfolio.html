@@ -505,6 +505,40 @@ html.still .v8{opacity:1!important;transform:none!important;transition:none!impo
 @media(max-width:700px){.hs-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.hs-kpis>div:last-child{grid-column:span 2}.hs-two,.hs-ins{grid-template-columns:1fr}.hs-study article{padding:18px}#lb.gal{padding:60px 8px}#lb .lbn{top:auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:none}#lbcap{bottom:calc(24px + env(safe-area-inset-bottom,0px))}}
 @media(prefers-reduced-motion:reduce){.hs-zoom img,.hs-zi{transition:none}.hs-zoom:hover img{transform:none}}
 
+/* High-contrast section navigation on both light and dark surfaces. */
+#dots.dots{
+  mix-blend-mode:normal!important;
+  right:clamp(12px,2vw,26px);
+  padding:13px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--bg);
+  box-shadow:0 4px 20px rgba(0,0,0,.14);
+  gap:12px;
+}
+#dots.dots a{
+  display:block;
+  width:9px;height:9px;
+  border:1.5px solid var(--ink)!important;
+  background:var(--ink)!important;
+  opacity:.48!important;
+  border-radius:999px;
+  transform:none!important;
+  transition:height .3s ease,opacity .25s ease!important;
+}
+#dots.dots a.on{
+  height:26px!important;
+  opacity:1!important;
+}
+#dots.dots a::after{
+  color:var(--ink)!important;
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:3px 8px;
+  right:25px;
+}
+@media(max-width:700px){#dots.dots{right:8px;padding:10px 7px;gap:10px}#dots.dots a{width:7px;height:7px}}
 /* Editorial scroll reveal: targeted, accessible, and resilient to legacy motion overrides. */
 html.motion-ready main>section:not(#home) .motion-item:not(.motion-visible){
   opacity:0!important;
