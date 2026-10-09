@@ -12,6 +12,9 @@ const html = readFileSync("src/lib/portfolio.html", "utf8").replaceAll(
 );
 writeFileSync("dist/index.html", html);
 copyFileSync("dist/index.html", "dist/404.html");
+// Standalone interactive HR analytics page; leaves the portfolio unchanged.
+copyFileSync("src/lib/hr-dashboard.html", "dist/hr-dashboard.html");
+copyFileSync("public/hr-recruitment-data.csv", "dist/hr-recruitment-data.csv");
 writeFileSync("dist/.nojekyll", "");
 if (existsSync("public/favicon.ico")) copyFileSync("public/favicon.ico", "dist/favicon.ico");
 console.log("Static site written to dist/ (index.html + 404.html)");
