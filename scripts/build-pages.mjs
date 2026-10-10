@@ -21,6 +21,8 @@ copyFileSync("dist/index.html", "dist/404.html");
 // Standalone interactive HR analytics page; leaves the portfolio unchanged.
 copyFileSync("src/lib/hr-dashboard.html", "dist/hr-dashboard.html");
 copyFileSync("public/hr-recruitment-data.csv", "dist/hr-recruitment-data.csv");
+mkdirSync("dist/employee-data-case-study", { recursive: true });
+copyFileSync("public/employee-data-case-study/workforce-dashboard.svg", "dist/employee-data-case-study/workforce-dashboard.svg");
 writeFileSync("dist/.nojekyll", "");
 if (existsSync("public/favicon.ico")) copyFileSync("public/favicon.ico", "dist/favicon.ico");
 console.log("Static site written to dist/ (index.html + 404.html)");
