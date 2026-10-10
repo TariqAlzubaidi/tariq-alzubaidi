@@ -26,6 +26,7 @@ copyFileSync("public/employee-data-case-study/workforce-dashboard.svg", "dist/em
 for (const name of ["hr-dashboard.png", "employee-data.png", "headcount-analysis.png", "salary-analysis.png", "Employee_Data_Analysis.xlsx"]) {
   copyFileSync(`public/employee-data-case-study/${name}`, `dist/employee-data-case-study/${name}`);
 }
+writeFileSync("dist/projects-version.txt", `Projects publication check\nCommit: ${process.env.GITHUB_SHA || "local-build"}\nExcel project route: #/project/employee-data-analysis\n`);
 writeFileSync("dist/.nojekyll", "");
 if (existsSync("public/favicon.ico")) copyFileSync("public/favicon.ico", "dist/favicon.ico");
 console.log("Static site written to dist/ (index.html + 404.html)");
