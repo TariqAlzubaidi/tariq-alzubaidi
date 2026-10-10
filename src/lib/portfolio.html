@@ -223,7 +223,7 @@
   <section id="contact" class="contact-scene">
     <div class="section-marker mono"><span>09 / NEXT CHAPTER</span><span>CONTACT</span></div>
     <h2>Let’s start<br><em>something good.</em></h2><p class="contact-intro">Open to HR, administration, and data-driven HR opportunities.</p>
-    <div class="contact-content"><div id="contactList"></div><form id="form"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><label>Message<textarea name="message" required></textarea></label><p class="form-note">This opens your email app with your message ready to send.</p><button class="btn" type="submit">Start a conversation <span aria-hidden="true">↗</span></button></form></div>
+    <div class="contact-content"><div id="contactList"></div><form id="form"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><label>Message<textarea name="message" required></textarea></label><p class="form-note">Send a message directly through this website.</p><p id="formStatus" role="status" aria-live="polite" style="font-size:12px;min-height:1.4em"></p><button class="btn" type="submit">Start a conversation <span aria-hidden="true">↗</span></button></form></div>
     <div class="contact-end" aria-hidden="true">People. Operations. Insight.</div>
   </section>
 </main>
@@ -267,9 +267,20 @@ document.addEventListener("keydown",function(e){var lb=$("#lb");if(!lb.classList
 (function(){var x0=null;var lb=$("#lb");lb.addEventListener("touchstart",function(e){x0=e.touches[0].clientX},{passive:true});lb.addEventListener("touchend",function(e){if(x0===null||!lb.classList.contains("gal"))return;var dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>45){galShow(GI+(dx<0?1:-1))}},{passive:true})})();
 function closeMenu(returnFocus){var wasOpen=$("#links").classList.contains("open");$("#links").classList.remove("open");$("#menu").setAttribute("aria-expanded","false");if(returnFocus&&wasOpen)$("#menu").focus()}
 $("#menu").addEventListener("click",function(){var o=$("#links").classList.toggle("open");this.setAttribute("aria-expanded",o)});
-$("#form").addEventListener("submit",function(e){e.preventDefault();
- if(CONFIG.email){var f=new FormData(this);location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Message from "+f.get("name"))+"&body="+encodeURIComponent(f.get("message")+"\n\n"+f.get("email"))}
- else toast("Contact details will be connected soon.")});
+// Set this to the Formspree endpoint after creating your own form.
+var CONTACT_FORM_ENDPOINT="";
+$("#form").addEventListener("submit",async function(e){
+ e.preventDefault();
+ var form=this,button=form.querySelector('button[type="submit"]'),status=$("#formStatus");
+ if(!CONTACT_FORM_ENDPOINT){status.textContent="Online messaging is being set up. Please contact me by email using the link on this page.";return;}
+ button.disabled=true;status.textContent="Sending your message...";
+ try{
+  var response=await fetch(CONTACT_FORM_ENDPOINT,{method:"POST",body:new FormData(form),headers:{"Accept":"application/json"}});
+  if(!response.ok){var result=await response.json().catch(function(){return {}});throw new Error(result.errors&&result.errors.length?result.errors.map(function(x){return x.message}).join(" "):"Message could not be sent. Please try again.");}
+  form.reset();status.textContent="Thank you! Your message has been sent successfully.";
+ }catch(err){status.textContent=err.message||"Unable to send right now. Please try again later."}
+ finally{button.disabled=false}
+});
 
 function saveCV(){
  var a=document.createElement("a");
