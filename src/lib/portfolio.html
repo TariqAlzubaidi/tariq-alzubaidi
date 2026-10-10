@@ -268,7 +268,7 @@ document.addEventListener("keydown",function(e){var lb=$("#lb");if(!lb.classList
 function closeMenu(returnFocus){var wasOpen=$("#links").classList.contains("open");$("#links").classList.remove("open");$("#menu").setAttribute("aria-expanded","false");if(returnFocus&&wasOpen)$("#menu").focus()}
 $("#menu").addEventListener("click",function(){var o=$("#links").classList.toggle("open");this.setAttribute("aria-expanded",o)});
 // Set this to the Formspree endpoint after creating your own form.
-var CONTACT_FORM_ENDPOINT="";
+var CONTACT_FORM_ENDPOINT="https://formspree.io/f/mzedgrpq";
 $("#form").addEventListener("submit",async function(e){
  e.preventDefault();
  var form=this,button=form.querySelector('button[type="submit"]'),status=$("#formStatus");
