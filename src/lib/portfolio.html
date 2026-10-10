@@ -66,6 +66,14 @@
 .hs-zoom:hover .hs-zi,.hs-zoom:focus-visible .hs-zi{opacity:1}.hs-zoom:hover img{transform:scale(1.012)}
 .hs-zoom:focus-visible{outline:2px solid var(--ink,currentColor);outline-offset:3px}
 .hs-shots figcaption{margin-top:10px;font-size:.9rem;color:var(--muted);display:grid;gap:2px}.hs-shots figcaption strong{color:var(--ink,inherit)}
+
+/* Consistent Excel case study gallery: headings above screenshots, fixed viewport, no distortion. */
+.hs-shots figure.excel-shot{display:flex;flex-direction:column;gap:12px}
+.hs-shots .excel-shot figcaption{order:0;margin:0;display:flex;flex-direction:column;gap:4px;padding:4px 0 0}
+.hs-shots .excel-shot figcaption strong{font-size:1rem;line-height:1.4;color:var(--ink)}
+.hs-shots .excel-shot figcaption span{font-size:.88rem;line-height:1.55}
+.hs-shots .excel-shot .hs-zoom{order:1;width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:#f3f5f6}
+.hs-shots .excel-shot .hs-zoom img{width:100%;height:100%;aspect-ratio:auto;object-fit:contain;object-position:center}
 .hs-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .hs-ins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .hs-ins>div{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:4px}
@@ -296,7 +304,7 @@ function studyHtml(d){GAL=d.shots;
  +'<article class="hs-top"><div><h3>Overview</h3><p>'+esc(d.overview)+'</p><dl class="hs-meta">'+d.meta.map(function(m){return '<div><dt>'+esc(m[0])+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join("")+'</dl></div></article>'
  +'<section class="hs-kpis" aria-label="Key performance indicators">'+d.kpis.map(function(k){return '<div><b>'+esc(k[1])+'</b><span>'+esc(k[0])+'</span></div>'}).join("")+'</section>'
  +(d.excel?'<article><h3>Excel Workbook</h3><p>Explore the original Excel workbook with its synthetic employee dataset, PivotTables, PivotCharts, department slicer, and HR dashboard.</p><p><a class="btn primary sm" href="'+esc(d.download)+'" download="Employee_Data_Analysis.xlsx">Download Excel Workbook ↧</a></p></article>':'<article><h3>Interactive Dashboard</h3><p>Explore the live recruitment metrics and filter by department, source, or recruiter.</p><p><a class="btn primary sm" href="./hr-dashboard.html" target="_blank" rel="noopener noreferrer">Open Interactive Dashboard ↗</a></p></article>')
- +'<article><h3>Dashboard Preview</h3><div class="hs-shots">'+d.shots.map(function(x,i){return '<figure><button type="button" class="hs-zoom" data-g="'+i+'" aria-label="Enlarge '+esc(x[0])+' screenshot"><img src="'+esc(x[2])+'" alt="'+(d.excel?'Excel ':'Power BI ')+esc(x[0])+' page: '+esc(x[1])+'" width="1355" height="753" loading="'+(i?'lazy':'eager')+'" decoding="async"><span class="hs-zi" aria-hidden="true">⤢</span></button><figcaption><strong>'+(i+1)+'. '+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></figcaption></figure>'}).join("")+'</div></article>'
+ +'<article><h3>Dashboard Preview</h3><div class="hs-shots">'+d.shots.map(function(x,i){return '<figure class="'+(d.excel?'excel-shot':'')+'">'+(d.excel?'<figcaption><strong>'+String(i+1).padStart(2,'0')+' / '+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></figcaption>':'')+'<button type="button" class="hs-zoom" data-g="'+i+'" aria-label="Enlarge '+esc(x[0])+' screenshot"><img src="'+esc(x[2])+'" alt="'+(d.excel?'Excel ':'Power BI ')+esc(x[0])+' page: '+esc(x[1])+'" width="1355" height="753" loading="'+(i?'lazy':'eager')+'" decoding="async"><span class="hs-zi" aria-hidden="true">⤢</span></button>'+(d.excel?'':'<figcaption><strong>'+(i+1)+'. '+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></figcaption>')+'</figure>'}).join("")+'</div></article>'
  +'<div class="hs-two"><article><h3>Business Problem</h3><p>'+esc(d.problem)+'</p></article><article><h3>Methodology</h3><ul>'+d.method.map(function(t){return '<li>'+esc(t)+'</li>'}).join("")+'</ul></article></div>'
  +'<article><h3>Key Insights</h3><div class="hs-ins">'+d.insights.map(function(t){return '<div><h4>'+esc(t[0])+'</h4><b>'+esc(t[1])+'</b><small>'+esc(t[2])+'</small><p>'+esc(t[3])+'</p></div>'}).join("")+'</div></article>'
  +'<article><h3>Recommendations</h3><ol class="hs-recs">'+d.recs.map(function(t){return '<li><strong>'+esc(t[0])+'</strong><span>'+esc(t[1])+'</span></li>'}).join("")+'</ol></article>'
