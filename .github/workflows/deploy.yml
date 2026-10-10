@@ -25,6 +25,8 @@ jobs:
         env:
           GITHUB_PAGES: "true"
         run: bun run build
+      - name: Verify Projects links and assets
+        run: node scripts/verify-projects.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
