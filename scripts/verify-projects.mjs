@@ -40,6 +40,9 @@ assert(cards[1].includes('href="#/project/employee-data-analysis"'), "Excel Expl
 assert(cards[1].includes('href="./employee-data-case-study/Employee_Data_Analysis.xlsx"'));
 assert(!cards[1].includes("hr-dashboard.html"), "Excel card must not link to Power BI");
 assert(!cards[2].includes("hr-dashboard.html"), "In-progress card must not link to Power BI");
+assert(html.includes('$("#chapter-current").textContent="05 / SELECTED WORK"'), "Project detail header must show Selected Work, not Introduction");
+assert(html.includes('class="case-bottom-nav"'), "Case studies should include return navigation after the outcome");
+assert(html.includes('mark(location.hash.startsWith("#/project/")?"projects":"home")'), "Direct case-study loads must highlight the project chapter");
 
 for (const name of [
   "hr-dashboard.png", "employee-data.png", "headcount-analysis.png",
