@@ -42,11 +42,9 @@ CERTS=[
  {group:"Human Resources",title:"HR Accounting & Cost Management",org:IMD,hours:"15 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
  {group:"Human Resources",title:"Government Procedures in HR Operations",org:IMD,hours:"30 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
  {group:"Human Resources",title:"HR Legal Skills & Saudi Labor Law",org:IMD,hours:"20 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
- {group:"Human Resources",title:"Executive Secretarial & Office Management",org:IMD,hours:"25 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""},
- {group:"Project Management",title:"PMP Project Management Training",org:"دار الرؤى للتدريب",hours:"35 Hours",status:"Planned",date:"",image:"",pdf:"",verify:""},
- {group:"Data & Business Tools",title:"Microsoft Excel",org:"",hours:"",status:"Planned",date:"",image:"",pdf:"",verify:""},
+ {group:"Human Resources",title:"Executive Secretarial & Office Management",org:IMD,hours:"25 Hours",status:"Scheduled",date:"",image:"",pdf:"",verify:""}, {group:"Data & Business Tools",title:"Microsoft Excel",org:"",hours:"",status:"Planned",date:"",image:"",pdf:"",verify:""},
  {group:"Data & Business Tools",title:"Microsoft Power BI",org:"",hours:"",status:"Planned",date:"",image:"",pdf:"",verify:""}
 ].concat(CERTS);
-var CERT_GROUPS=["Human Resources","Project Management","Data & Business Tools","English & Communication","Other Certificates"];
+var CERT_GROUPS=["Human Resources","Data & Business Tools","English & Communication","Other Certificates"];
 var CASE=[["Overview","What the project is and the business context."],["Objective","The business question this project answers."],["Dataset","Source, size and structure of the data used."],["Tools","Tools and methods used."],["Process","How the data was cleaned, analysed and modelled."],["Key Findings","The main insights from the analysis."],["Dashboard / Results","RESULT"],["Recommendations","Actions the findings support."]];
 /* ===== end of content ===== */
