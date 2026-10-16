@@ -12,10 +12,14 @@ copyFileSync("public/portfolio-motion.js", "dist/portfolio-motion.js");
 // Publish the downloadable CV with the static site.
 copyFileSync("public/TariqAlzubaidi_ResumeEN.pdf", "dist/TariqAlzubaidi_ResumeEN.pdf");
 
-// Certificate files are hosted on the Lovable asset CDN; make their links absolute.
+// Keep existing CDN assets absolute and publish certificate files with the static site.
 const html = readFileSync("src/lib/portfolio.html", "utf8")
   .replace("/* PORTFOLIO_CONTENT */", () => readFileSync("src/lib/portfolio-content.js", "utf8"))
   .replaceAll('"/__l5e/', `"${ASSET_HOST}/__l5e/`);
+mkdirSync("dist/certificates", { recursive: true });
+for (const name of ["hr-management-certificate.jpg", "hr-management-certificate.pdf", "hr-accounting-cost-certificate.jpg", "hr-accounting-cost-certificate.pdf"]) {
+  copyFileSync(`public/certificates/${name}`, `dist/certificates/${name}`);
+}
 writeFileSync("dist/index.html", html);
 copyFileSync("dist/index.html", "dist/404.html");
 // Standalone interactive HR analytics page; leaves the portfolio unchanged.
