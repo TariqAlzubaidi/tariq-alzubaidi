@@ -34,3 +34,9 @@ writeFileSync("dist/projects-version.txt", `Projects publication check\nCommit: 
 writeFileSync("dist/.nojekyll", "");
 if (existsSync("public/favicon.ico")) copyFileSync("public/favicon.ico", "dist/favicon.ico");
 console.log("Static site written to dist/ (index.html + 404.html)");
+
+// Publish the owner-approved OAuth information pages without changing the portfolio.
+mkdirSync("dist/n8n-job-applications", { recursive: true });
+for (const name of ["index.html", "privacy.html", "personal-use.html"]) {
+  copyFileSync(`public/n8n-job-applications/${name}`, `dist/n8n-job-applications/${name}`);
+}
